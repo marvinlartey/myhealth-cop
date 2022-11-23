@@ -2,11 +2,17 @@ import 'package:animations/animations.dart';
 import 'package:calender_picker/calender_picker.dart';
 import 'package:flutter/material.dart';
 
-class ReschdulePage extends StatelessWidget {
+class ReschdulePage extends StatefulWidget {
   ReschdulePage({Key? key}) : super(key: key);
 
+  @override
+  State<ReschdulePage> createState() => _ReschdulePageState();
+}
+
+class _ReschdulePageState extends State<ReschdulePage> {
   DateTime dateTime = DateTime.now();
-  int days = 10;
+
+  int days = 30;
 
   @override
   Widget build(BuildContext context) {
@@ -57,50 +63,98 @@ class ReschdulePage extends StatelessWidget {
                                 fontSize: 19, fontWeight: FontWeight.bold)),
                         const Expanded(child: SizedBox()),
                         IconButton(
-                            onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
+                            onPressed: () {},
+                            icon: const Icon(Icons.arrow_back_ios)),
                         IconButton(
                             onPressed: () {},
-                            icon: Icon(Icons.arrow_forward_ios)),
+                            icon: const Icon(Icons.arrow_forward_ios)),
                       ],
                     ),
                     OpenContainer(
                       closedBuilder:
                           (BuildContext context, void Function() action) {
-                        return Container(
-                            child: CalenderPicker(
+                        return CalenderPicker(
                           dateTime,
+                          selectedTextColor: Colors.black,
                           daysCount: days,
-                          enableMultiSelection: true,
-                          multiSelectionListener: (selectedDates) =>
-                              print(selectedDates),
-                          selectionColor: Color.fromARGB(255, 91, 128, 183),
-                        )
-
-                            /* Row(children: [
-                            Column(
-                              children: [
-                                Text(
-                                  "Mon",
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  "4",
-                                  style: TextStyle(fontStyle: FontStyle.normal),
-                                )
-                              ],
-                            )
-                          ]), */
-                            );
+                          enableMultiSelection: false
+                          /*  multiSelectionListener: (selectedDates) =>
+                          print(selectedDates), */
+                          ,
+                          selectionColor:
+                              const Color.fromARGB(255, 91, 128, 183),
+                        );
                       },
                       openBuilder: (BuildContext context,
                           void Function({Object? returnValue}) action) {
                         return SafeArea(
                           child: Container(
-                            child: Text("open"),
+                            child: const Text("open"),
                           ),
                         );
                       },
-                    )
+                    ),
+                    const Center(
+                      child: Icon(Icons.keyboard_arrow_down_outlined),
+                    ),
+                    const Divider(
+                      thickness: 3,
+                    ),
+                    const Text(
+                      "Morning",
+                      style:
+                          TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+                    ),
+                    Row(
+                      children: [
+                        timeSelection("09:00", false),
+                        timeSelection("09:30", false),
+                        timeSelection("10:00", false),
+                        timeSelection("10:30", true),
+                      ],
+                    ),
+                    const Text(
+                      "Afternoon",
+                      style:
+                          TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+                    ),
+                    Row(
+                      children: [
+                        timeSelection("12:00", false),
+                        timeSelection("13:00", false),
+                        timeSelection("13:30", true),
+                      ],
+                    ),
+                    const Text(
+                      "Evening",
+                      style:
+                          TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+                    ),
+                    Row(
+                      children: [
+                        timeSelection("17:00", false),
+                        timeSelection("18:30", false),
+                        timeSelection("19:00", false),
+                        timeSelection("19:30", true),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Center(
+                        child: ElevatedButton(
+                            onPressed: () {},
+                            child: Text(
+                              "CONFIRM",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                                elevation: 7,
+                                minimumSize: Size(
+                                    MediaQuery.of(context).size.width * 0.75,
+                                    55),
+                                primary: Color.fromARGB(255, 0, 167, 233))),
+                      ),
+                    ),
                   ],
                 ),
               )
@@ -108,6 +162,64 @@ class ReschdulePage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  InkWell timeSelection(String text, bool isSelects) {
+    return InkWell(
+      child: Container(
+        alignment: const Alignment(0, 0),
+        width: MediaQuery.of(context).size.width * 0.18,
+        margin: const EdgeInsets.all(3.0),
+        decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(25)),
+            color: isSelect == false
+                ? const Color.fromARGB(255, 244, 245, 251)
+                : const Color.fromARGB(255, 212, 217, 245)),
+        child: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Text(
+            (text),
+            style: const TextStyle(fontSize: 16), // Time
+            // style:
+            //      isSelect == false
+            //         ? widget.dateTextStyle
+            //         : widget.activeDateStyle
+          ),
+        ),
+      ),
+      onTap: () {
+        /* if (isSelect) {
+          isSelect = !isSelect;
+        } else {
+          isSelect = true;
+        } */
+        setState(() {
+          isSelect = isSelects;
+
+          /* if (isSelect == true) {
+                                list.add(widget.date.toString());
+                                if (widget.onDateSelected != null) {
+                                  // Call the onDateSelected Function
+                                  widget.multiSelectionListener!(list);
+                                }
+                              } else {
+                                list.remove(widget.date.toString());
+                                // ignore: avoid_print
+                                if (widget.onDateSelected != null) {
+                                  // Call the onDateSelected Function
+                                  widget.multiSelectionListener!(list);
+                                }
+                              } */
+        });
+        /* else {
+                            // Check if onDateSelected is not null
+                            if (widget.onDateSelected != null) {
+                              // Call the onDateSelected Function
+                              widget.onDateSelected!(widget.date);
+                            }
+                          } */
+      },
     );
   }
 }
