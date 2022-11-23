@@ -66,7 +66,7 @@ class CardDetails extends StatelessWidget {
                               )
                             ],
                           ),
-                          Text(
+                          const Text(
                             "Meditation",
                             style: TextStyle(
                                 fontSize: 19, fontWeight: FontWeight.bold),
@@ -87,20 +87,19 @@ class CardDetails extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Text(
+                          const Text(
                             "40 min",
                             style: TextStyle(color: Colors.grey),
                           ),
-                          Divider(
+                          const Divider(
                             height: 20,
                             thickness: 2,
                           ),
                           Row(
-                            children: [
+                            children: const [
                               CircleAvatar(
                                 radius: 22,
                                 child: Image(
-                                    fit: BoxFit.fill,
                                     image:
                                         AssetImage("assets/images/medi.jpg")),
                               )
