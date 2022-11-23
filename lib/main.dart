@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:myhealthcop/pages/card_detailsss.dart';
 import 'package:myhealthcop/pages/reschedule.dart';
+
+import 'pages/card_details.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +29,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: ReschdulePage(),
+      home: CardDetails(),
     );
   }
 }
