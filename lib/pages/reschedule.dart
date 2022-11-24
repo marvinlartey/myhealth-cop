@@ -157,6 +157,8 @@ class _ReschdulePageState extends State<ReschdulePage> {
                               style: TextStyle(fontSize: 20),
                             ),
                             style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15)),
                                 elevation: 7,
                                 minimumSize: Size(
                                     MediaQuery.of(context).size.width * 0.75,

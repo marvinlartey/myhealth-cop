@@ -145,6 +145,9 @@ class CardDetails extends StatelessWidget {
                               children: [
                                 ElevatedButton(
                                     style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
                                       elevation: 7,
                                       minimumSize: Size(
                                           MediaQuery.of(context).size.width *
@@ -165,6 +168,9 @@ class CardDetails extends StatelessWidget {
                                   onPressed: () {},
                                   style: ElevatedButton.styleFrom(
                                       elevation: 7,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
                                       minimumSize: Size(
                                           MediaQuery.of(context).size.width *
                                               0.2,

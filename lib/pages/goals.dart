@@ -46,7 +46,7 @@ class _WellnessGoalsState extends State<WellnessGoals> {
               dotRadius: MediaQuery.of(context).size.width * 0.055,
               shape: Shape.pipe,
               spacing: 10,
-              tappingEnabled: false,
+              tappingEnabled: true,
               // ??
               indicator: Indicator.shift,
               fixedDotDecoration: const FixedDotDecoration(color: Colors.blue),
@@ -58,9 +58,11 @@ class _WellnessGoalsState extends State<WellnessGoals> {
                 });
               },
             ),
-            Text(
-              "What are your \nwellness goals",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            Container(
+              child: Text(
+                info(activeStep),
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              ),
             ),
             const Expanded(child: const SizedBox()),
             Row(
@@ -121,5 +123,50 @@ class _WellnessGoalsState extends State<WellnessGoals> {
         }
       },
     );
+  }
+}
+
+/* Row steps() {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: List.generate(dotCount, (index) {
+      return ElevatedButton(
+        child: Text('${index + 1}'),
+        onPressed: () {
+          setState(() {
+            activeStep = index;
+          });
+        },
+      );
+    }),
+  );
+} */
+
+String info(int index) {
+  switch (index) {
+    case 1:
+      return 'Page 2';
+
+    case 2:
+      return 'Page 3';
+
+    case 3:
+      return 'Page 4';
+
+    case 4:
+      return 'Page 5';
+
+    case 5:
+      return "What are your \nwellness goals";
+
+    case 6:
+      return 'Page 7';
+
+    case 7:
+      return 'Medical History';
+
+    // Here, default corresponds to the index value = 0.
+    default:
+      return 'Welcome';
   }
 }
