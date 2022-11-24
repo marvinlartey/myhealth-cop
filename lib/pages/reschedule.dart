@@ -1,6 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:calender_picker/calender_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:myhealthcop/pages/card_details.dart';
 
 class ReschdulePage extends StatefulWidget {
   ReschdulePage({Key? key}) : super(key: key);
@@ -26,7 +27,9 @@ class _ReschdulePageState extends State<ReschdulePage> {
               Row(children: [
                 IconButton(
                   icon: const Icon(Icons.arrow_back_rounded),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                 ),
                 const Center(
                   heightFactor: 0,
@@ -44,7 +47,7 @@ class _ReschdulePageState extends State<ReschdulePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      padding: EdgeInsets.symmetric(vertical: 10),
                       child: Text("Meditation",
                           style: TextStyle(
                               fontWeight: FontWeight.w700, fontSize: 24)),
@@ -142,7 +145,12 @@ class _ReschdulePageState extends State<ReschdulePage> {
                       padding: const EdgeInsets.all(8.0),
                       child: Center(
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CardDetails()));
+                            },
                             child: Text(
                               "CONFIRM",
                               style: TextStyle(fontSize: 20),

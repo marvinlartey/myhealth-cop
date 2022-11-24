@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:myhealthcop/pages/goals.dart';
 
 class CardDetails extends StatelessWidget {
   const CardDetails({Key? key}) : super(key: key);
@@ -112,12 +113,14 @@ class CardDetails extends StatelessWidget {
                             child: Row(
                               children: const [
                                 CircleAvatar(
+                                  backgroundImage:
+                                      AssetImage("assets/images/medi.jpg"),
                                   radius: 12,
-                                  child: Image(
+                                  /* child: Image(
                                       image:
-                                          AssetImage("assets/images/medi.jpg")),
+                                          AssetImage("assets/images/medi.jpg")), */
                                 ),
-                                Text("Jane cooper")
+                                Text(" Jane cooper")
                               ],
                             ),
                           ),
@@ -148,7 +151,14 @@ class CardDetails extends StatelessWidget {
                                               0.5,
                                           55),
                                     ),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      // TODO: REMOVE
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  WellnessGoals()));
+                                    },
                                     child: const Text("JOIN THE CLASS")),
                                 const Expanded(child: SizedBox()),
                                 ElevatedButton(
