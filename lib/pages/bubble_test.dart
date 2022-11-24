@@ -67,8 +67,10 @@ class _BubbleSelectionUiState extends State<BubbleSelectionUi> {
             backgroundColor: Color.fromARGB(255, 255, 255, 255),
             bubbless: [
               Bbubble(
-                  scale: 0.9,
                   text: "Eat Healthy",
+                  child: Image(image: AssetImage('assets/images/medi.jpg')),
+                  scale: 0.9,
+                  backgroundImage: AssetImage("assets/images/medi.jpg"),
                   activeColor: Colors.red.withOpacity(0.5),
                   inactiveColor: Colors.blue.withOpacity(0.5),
                   textStyle: const TextStyle(
