@@ -73,32 +73,33 @@ class _ReschdulePageState extends State<ReschdulePage> {
                             icon: const Icon(Icons.arrow_forward_ios)),
                       ],
                     ),
+                    CalenderPicker(
+                      dateTime,
+                      selectedTextColor: Colors.black,
+                      daysCount: days,
+                      enableMultiSelection: false
+                      /*  multiSelectionListener: (selectedDates) =>
+                          print(selectedDates), */
+                      ,
+                      selectionColor: Color.fromARGB(255, 202, 208, 239),
+                    ),
                     OpenContainer(
+                      closedElevation: 0,
+                      closedColor: Color.fromARGB(0, 9, 9, 9),
                       closedBuilder:
                           (BuildContext context, void Function() action) {
-                        return CalenderPicker(
-                          dateTime,
-                          selectedTextColor: Colors.black,
-                          daysCount: days,
-                          enableMultiSelection: false
-                          /*  multiSelectionListener: (selectedDates) =>
-                          print(selectedDates), */
-                          ,
-                          selectionColor:
-                              const Color.fromARGB(255, 91, 128, 183),
+                        return const Center(
+                          child: Icon(Icons.keyboard_arrow_down_outlined),
                         );
                       },
                       openBuilder: (BuildContext context,
                           void Function({Object? returnValue}) action) {
                         return SafeArea(
                           child: Container(
-                            child: const Text("open"),
+                            child: const Text("CALENDER"),
                           ),
                         );
                       },
-                    ),
-                    const Center(
-                      child: Icon(Icons.keyboard_arrow_down_outlined),
                     ),
                     const Divider(
                       thickness: 3,
