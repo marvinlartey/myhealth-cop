@@ -7,7 +7,7 @@ import 'package:im_stepper/stepper.dart';
 import 'package:myhealthcop/pages/reschedule.dart';
 
 class WellnessGoals extends StatefulWidget {
-  WellnessGoals({Key? key}) : super(key: key);
+  const WellnessGoals({Key? key}) : super(key: key);
 
   @override
   State<WellnessGoals> createState() => _WellnessGoalsState();
@@ -36,7 +36,7 @@ class _WellnessGoalsState extends State<WellnessGoals> {
                   },
                   icon: Icon(Icons.arrow_back_rounded)),
               Spacer(),
-              Text("6/7"),
+              Text((activeStep + 1).toString() + "/7"),
               Spacer(),
               Text("SKIP")
             ]),
@@ -105,7 +105,9 @@ class _WellnessGoalsState extends State<WellnessGoals> {
           setState(() {
             activeStep++;
           });
-        }
+        } else
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => ReschdulePage()));
       },
     );
   }
