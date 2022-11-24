@@ -68,14 +68,12 @@ class _BubbleSelectionUiState extends State<BubbleSelectionUi> {
             bubbless: [
               Bbubble(
                   text: "Eat Healthy",
-                  child: Image(image: AssetImage('assets/images/medi.jpg')),
                   scale: 0.9,
                   backgroundImage: AssetImage("assets/images/medi.jpg"),
                   activeColor: Colors.red.withOpacity(0.5),
                   inactiveColor: Colors.blue.withOpacity(0.5),
                   textStyle: const TextStyle(
                     fontSize: 18,
-                    color: Colors.yellow,
                   )),
               Bbubble(
                 scale: 0.9,
@@ -98,7 +96,7 @@ class _BubbleSelectionUiState extends State<BubbleSelectionUi> {
               ),
               Bbubble(
                 scale: 0.9,
-                backgroundImage: AssetImage("assert/images/medi.jpg"),
+                backgroundImage: AssetImage("assets/images/medi.jpg"),
                 text: "Gain Weight",
                 activeColor: Colors.red.withOpacity(0.5),
                 inactiveColor:
