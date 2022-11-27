@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:myhealthcop/pages/card_details.dart';
 
 class ReschdulePage extends StatefulWidget {
-  ReschdulePage({Key? key}) : super(key: key);
+  const ReschdulePage({Key? key}) : super(key: key);
 
   @override
   State<ReschdulePage> createState() => _ReschdulePageState();
@@ -12,6 +12,8 @@ class ReschdulePage extends StatefulWidget {
 
 class _ReschdulePageState extends State<ReschdulePage> {
   DateTime dateTime = DateTime.now();
+  int intMonth = DateTime.now().month;
+  bool isActive = false;
 
   int days = 30;
 
@@ -24,6 +26,7 @@ class _ReschdulePageState extends State<ReschdulePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Appbar
               Row(children: [
                 IconButton(
                   icon: const Icon(Icons.arrow_back_rounded),
@@ -61,31 +64,49 @@ class _ReschdulePageState extends State<ReschdulePage> {
                     ),
                     Row(
                       children: [
-                        const Text("December",
-                            style: TextStyle(
+                        // Gets and displays the month
+                        Text(month(intMonth),
+                            style: const TextStyle(
                                 fontSize: 19, fontWeight: FontWeight.bold)),
                         const Expanded(child: SizedBox()),
+
+                        // Previous month button
                         IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              if (intMonth > 1) {
+                                setState(() {
+                                  intMonth--;
+                                });
+                              }
+                            },
                             icon: const Icon(Icons.arrow_back_ios)),
+
+                        // Next month button
                         IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              if (intMonth < 12) {
+                                setState(() {
+                                  intMonth++;
+                                });
+                              }
+                            },
                             icon: const Icon(Icons.arrow_forward_ios)),
                       ],
                     ),
+
+                    // Horizontal calender_picker
                     CalenderPicker(
                       dateTime,
                       selectedTextColor: Colors.black,
                       daysCount: days,
-                      enableMultiSelection: false
-                      /*  multiSelectionListener: (selectedDates) =>
-                          print(selectedDates), */
-                      ,
-                      selectionColor: Color.fromARGB(255, 202, 208, 239),
+                      enableMultiSelection: false,
+                      selectionColor: const Color.fromARGB(255, 202, 208, 239),
                     ),
+
+                    // View enlarged calender
                     OpenContainer(
                       closedElevation: 0,
-                      closedColor: Color.fromARGB(0, 9, 9, 9),
+                      closedColor: const Color.fromARGB(0, 9, 9, 9),
                       closedBuilder:
                           (BuildContext context, void Function() action) {
                         return const Center(
@@ -109,6 +130,8 @@ class _ReschdulePageState extends State<ReschdulePage> {
                       style:
                           TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
                     ),
+
+                    // Time selection
                     Row(
                       children: [
                         timeSelection("09:00", false),
@@ -142,6 +165,8 @@ class _ReschdulePageState extends State<ReschdulePage> {
                         timeSelection("19:30", true),
                       ],
                     ),
+
+                    // Confirm Button
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Center(
@@ -150,12 +175,9 @@ class _ReschdulePageState extends State<ReschdulePage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => CardDetails()));
+                                      builder: (context) =>
+                                          const CardDetails()));
                             },
-                            child: Text(
-                              "CONFIRM",
-                              style: TextStyle(fontSize: 20),
-                            ),
                             style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)),
@@ -163,7 +185,12 @@ class _ReschdulePageState extends State<ReschdulePage> {
                                 minimumSize: Size(
                                     MediaQuery.of(context).size.width * 0.75,
                                     55),
-                                primary: Color.fromARGB(255, 0, 167, 233))),
+                                primary:
+                                    const Color.fromARGB(255, 0, 167, 233)),
+                            child: const Text(
+                              "CONFIRM",
+                              style: TextStyle(fontSize: 20),
+                            )),
                       ),
                     ),
                   ],
@@ -192,45 +219,107 @@ class _ReschdulePageState extends State<ReschdulePage> {
           child: Text(
             (text),
             style: const TextStyle(fontSize: 16), // Time
-            // style:
-            //      isSelect == false
-            //         ? widget.dateTextStyle
-            //         : widget.activeDateStyle
           ),
         ),
       ),
       onTap: () {
-        /* if (isSelect) {
-          isSelect = !isSelect;
-        } else {
-          isSelect = true;
-        } */
         setState(() {
           isSelect = isSelects;
-
-          /* if (isSelect == true) {
-                                list.add(widget.date.toString());
-                                if (widget.onDateSelected != null) {
-                                  // Call the onDateSelected Function
-                                  widget.multiSelectionListener!(list);
-                                }
-                              } else {
-                                list.remove(widget.date.toString());
-                                // ignore: avoid_print
-                                if (widget.onDateSelected != null) {
-                                  // Call the onDateSelected Function
-                                  widget.multiSelectionListener!(list);
-                                }
-                              } */
         });
-        /* else {
-                            // Check if onDateSelected is not null
-                            if (widget.onDateSelected != null) {
-                              // Call the onDateSelected Function
-                              widget.onDateSelected!(widget.date);
-                            }
-                          } */
       },
     );
+  }
+}
+
+Color timeColor(bool isActive) {
+  if (isActive) {
+    return const Color.fromARGB(255, 212, 217, 245);
+  } else {
+    return const Color.fromARGB(255, 235, 237, 250);
+  }
+}
+
+class TimeWidget extends StatelessWidget {
+  TimeWidget({
+    Key? key,
+    required this.text,
+    this.color,
+    this.isActivee = true,
+  }) : super(key: key);
+
+  final String text;
+  Color? color = const Color.fromARGB(255, 212, 217, 245);
+  bool isActivee;
+  int? r, b, g;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      child: Container(
+        width: MediaQuery.of(context).size.width * 0.18,
+        margin: const EdgeInsets.all(3.0),
+        decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(25)),
+            color: timeColor(isActivee)),
+        child: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                text, // Time
+                style: const TextStyle(fontSize: 16),
+              ),
+            ],
+          ),
+        ),
+      ),
+      onTap: () {
+        if (isActivee) {
+          isActivee = false;
+          color = const Color.fromARGB(255, 212, 217, 245);
+        } else {
+          isActivee = true;
+          color = const Color.fromARGB(255, 244, 245, 251);
+        }
+      },
+    );
+  }
+}
+
+String month(int month) {
+  switch (month) {
+    case 1:
+      return 'January';
+
+    case 2:
+      return 'Febuary';
+
+    case 3:
+      return 'March';
+
+    case 4:
+      return 'April';
+
+    case 5:
+      return "May";
+
+    case 6:
+      return 'June';
+    case 7:
+      return 'July';
+    case 8:
+      return 'August';
+    case 9:
+      return 'September';
+    case 10:
+      return 'October';
+    case 11:
+      return 'November';
+    case 12:
+      return 'December';
+    default:
+      return 'Month';
   }
 }

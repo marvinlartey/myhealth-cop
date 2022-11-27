@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:myhealthcop/pages/card_detailsss.dart';
 import 'package:myhealthcop/pages/goals.dart';
 import 'package:myhealthcop/pages/reschedule.dart';
 
@@ -30,7 +29,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: WellnessGoals(),
+      home: const WellnessGoals(),
     );
   }
 }

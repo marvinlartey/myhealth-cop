@@ -8,11 +8,11 @@ class CardDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
+      // Background
       Column(
         children: [
           Container(
             height: MediaQuery.of(context).size.height * 0.4,
-            // alignment: Alignment.topCenter,
             decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage("assets/images/medi.jpg"),
@@ -21,20 +21,17 @@ class CardDetails extends StatelessWidget {
           Container(
             height: MediaQuery.of(context).size.height * 0.6,
             color: Colors.white,
-            // alignment: Alignment.topCenter,
-            /* decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/images/medi.jpg"),
-                fit: BoxFit.cover)), */
           ),
         ],
       ),
       Scaffold(
+        // Scaffold transparent so backgroung is visible
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // spacer
               Container(
                 color: Colors.transparent,
                 height: 222,
@@ -90,10 +87,8 @@ class CardDetails extends StatelessWidget {
                                   endIndent: 0,
                                   color: Colors.red,
                                 ),
-                                Text("Today, " +
-                                    DateTime.now().day.toString() +
-                                    " " +
-                                    DateFormat.MMMM().format(DateTime.now())),
+                                Text(
+                                    "Today, ${DateTime.now().day} ${DateFormat.MMMM().format(DateTime.now())}"),
                               ],
                             ),
                           ),
@@ -106,8 +101,7 @@ class CardDetails extends StatelessWidget {
                             height: 20,
                             thickness: 2,
                           ),
-                          // Name of the instructor
-                          // TODO: change image to fit avatar
+                          // Name&&picture of the instructor
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 9),
                             child: Row(
@@ -138,7 +132,6 @@ class CardDetails extends StatelessWidget {
                             ),
                           ),
                           // Buttons
-                          // TODO: round egdes
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 9),
                             child: Row(
@@ -154,14 +147,7 @@ class CardDetails extends StatelessWidget {
                                               0.5,
                                           55),
                                     ),
-                                    onPressed: () {
-                                      // TODO: REMOVE
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  WellnessGoals()));
-                                    },
+                                    onPressed: () {},
                                     child: const Text("JOIN THE CLASS")),
                                 const Expanded(child: SizedBox()),
                                 ElevatedButton(
@@ -187,6 +173,7 @@ class CardDetails extends StatelessWidget {
                       ),
                     )),
               ),
+              // Class details
               Card(
                 color: const Color.fromARGB(255, 255, 255, 255),
                 child: Padding(
@@ -294,7 +281,7 @@ class CardDetails extends StatelessWidget {
                       ),
                       const Text(
                         "",
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       const Text(
                         "",
