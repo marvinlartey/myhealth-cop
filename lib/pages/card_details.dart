@@ -208,7 +208,10 @@ class CardDetails extends StatelessWidget {
                       const Padding(
                         padding: EdgeInsets.symmetric(vertical: 10),
                         child: ListTile(
-                          leading: CircleAvatar(),
+                          leading: CircleAvatar(
+                            backgroundImage:
+                                AssetImage("assets/images/medi.jpg"),
+                          ),
                           title: Text("Jane Cooper"),
                           subtitle: Text("Fitness Coach"),
                           trailing: Icon(Icons.arrow_forward_ios_rounded),
