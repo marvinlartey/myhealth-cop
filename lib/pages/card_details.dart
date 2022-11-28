@@ -110,9 +110,6 @@ class CardDetails extends StatelessWidget {
                                   backgroundImage:
                                       AssetImage("assets/images/medi.jpg"),
                                   radius: 12,
-                                  /* child: Image(
-                                      image:
-                                          AssetImage("assets/images/medi.jpg")), */
                                 ),
                                 Text(" Jane cooper")
                               ],

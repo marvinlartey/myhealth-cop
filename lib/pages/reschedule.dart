@@ -243,12 +243,12 @@ class TimeWidget extends StatelessWidget {
   TimeWidget({
     Key? key,
     required this.text,
-    this.color,
+    required this.color,
     this.isActivee = true,
   }) : super(key: key);
 
   final String text;
-  Color? color = const Color.fromARGB(255, 212, 217, 245);
+  Color color = const Color.fromARGB(255, 212, 217, 245);
   bool isActivee;
   int? r, b, g;
 
